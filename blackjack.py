@@ -14,11 +14,15 @@ while not done:
     while not done and not valid_bet:
         print("▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬")
         print("You have $%d" % (player.money))
-        bet_amount = input("Bet or q to quit > ")
-        if bet_amount == "q":
-            done = True
+        if player.money > 0:
+            bet_amount = input("Bet or q to quit > ")
+            if bet_amount == "q":
+                done = True
+            else:
+                valid_bet = player.bet(int(bet_amount))
         else:
-            valid_bet = player.bet(int(bet_amount))
+            print("Sorry, try again sometime.")
+            done = True
     if not done:
         player.start_hand(deck)
         house.start_hand(deck)
